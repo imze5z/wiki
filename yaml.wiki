@@ -1,0 +1,32 @@
+= yaml =
+
+== yaml基础语法 ==
+* 实例yaml配置文件
+{{{
+# 注释
+mongo_proxy_ip:
+    host: 'locahost'
+    port: 27017
+    database: 'test'
+    user: 'admin'
+    pasword: '123456'
+}}}
+
+== 获取yaml配置并返回字典 ==
+{{{
+import yaml
+dbcfgpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'db.yaml')
+stream = open(dbcfgpath, 'r')
+dbcfg = yaml.load(stream) # 这里读取流数据后，就是字典类型数据
+stream.close()
+print(dbcfg)
+}}}
+* 输出
+{'mongo_proxy_ip': {
+    'host': 'localhost',
+    'port': 27017,
+    'database': 'test',
+    'user': 'admin',
+    'password': '123456'}}
+    
+如上所示，输出的是一个字典    

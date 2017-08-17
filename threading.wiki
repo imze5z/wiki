@@ -1,0 +1,39 @@
+= threading =
+
+== 类 ==
+* Thread(target, args) -- start, join
+ 
+== 函数 ==  
+* active_count
+ 
+== 实例 ==
+1. 实用端口扫描及服务器指纹获取
+{{{
+from threading import active_count, Thread
+from socket import socket
+from time import sleep
+from pprint import pprint
+
+def check_port(ip, port):
+    cli = socket()
+    try:
+        cli.connect_ex((ip, port))
+        cli.send('Hello Server\n'.encode())
+        pprint(cli.recv(1024).decode().splitlines())
+    except:
+        pass
+    finally:
+        cli.close()
+
+if __name__ == '__main__':
+    ip = 'cn.maximintegrated.com'
+    i = 0 
+    while i < 200:
+        t = Thread(target=check_port, args=(ip, i))
+        t.start()
+        i += 1
+
+    while active_count() <= 2:
+        print('.')
+        sleep(1)
+}}}

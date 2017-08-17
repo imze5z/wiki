@@ -1,0 +1,9 @@
+= swig =
+
+== ibm 的文档 ==
+https://www.ibm.com/developerworks/cn/aix/library/au-swig/
+
+== 精华部分 ==
+SWIG 是一个非常优秀的开源工具，支持您将 C/C++ 代码与任何主流脚本语言相集成。
+此外，它向更广泛的受众公开了基本代码，改善了可测试性，让您的 Ruby 代码库某部
+分能快速写出高性能的 C/C++ 模块。

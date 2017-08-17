@@ -1,0 +1,10 @@
+= python =
+
+== internal module ==
+[[sys]] | [[threading]] |
+
+== third module ==
+[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]]
+
+== 第三方优秀的软件 ==
+[[pyinstaller]] | [[supervisor]]

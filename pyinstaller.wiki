@@ -1,0 +1,232 @@
+= pyinstaller =
+一个打包成二进制运行的文件
+
+== install ==
+`code pip install pyinstaller`
+
+== examples ==
+{{{
+import os
+import requests
+from scrapy.selector import Selector
+from scrapy import Item, Field
+import xlwt
+import logging
+from requests.utils import dict_from_cookiejar
+
+class CompanyItem(Item):
+    name = Field() # 公司名
+    phone = Field()  # 电话
+    mphone = Field() # 手机
+    address = Field() # 地址
+    href = Field() # 链接
+    customerqq = Field() # 供应商qq
+
+class XLS(object):
+    def __init__(self):
+        self.xls = xlwt.Workbook()
+        self.sheet = self.xls.add_sheet('default')
+
+    def save(self, xls_name):
+        self.xls.save(xls_name + '.xls')
+
+    def write(self, x, y, value):
+        self.sheet.write(x, y, value)
+
+class CompanySpider(object):
+    def __init__(self):
+        self.session = requests.session()
+        tmp = {
+            'Host': 'www.hqew.com',
+            'Connection': 'keep-alive',
+            'Cache-Control': 'max-age=0',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.'
+                '36(KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'),
+            'Accept': ('text/html,application/xhtml+xml,'
+                'application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'),
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.8'
+        }
+        self.session.get('http://www.hqew.com/', headers=tmp)
+
+    def search(self, part_number):
+        part_number = part_number.upper()
+        url = 'http://s.hqew.com/' + part_number + '_10.html'
+        tmp = {
+            'Host': 's.hqew.com',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36' 
+                ' (KHTML, likeGecko) Chrome/60.0.3112.90 Safari/537.36'),
+            'Accept': ('text/html,application/xhtml+xml,'
+                'application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'),
+            'Referer': 'http://s.hqew.com',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.8'
+        }
+        r = self.session.get(url, headers=tmp)
+        r.encoding = 'utf-8'
+        return r.text
+
+    def next_page(self, next_page_url):
+        print('---------------------------', next_page_url, '----------------')
+        tmp = {
+            'Host': 's.hqew.com',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'
+                '(KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'),
+            'Accept': ('text/html,application/xhtml+xml,application/xml;'
+                'q=0.9,image/webp,image/apng,*/*;q=0.8'),
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.8'
+        }
+        r = self.session.get(next_page_url, headers=tmp)
+        r.encoding = 'utf-8'
+        return r.text
+
+    def parse_search(self, html):
+        response = Selector(text=html)
+        lbcis = self._parse_lunbo(response)
+        iccis, next_page_url = self._parse_ic(response)
+        return lbcis + iccis, next_page_url
+
+    def _parse_ic(self, response):
+        # 获取ic数据
+        ics = response.xpath('//ul[starts-with(@class, "record ")]')
+        cis = []
+        for ic in ics:
+            cm = ic.xpath('./li[@class="col3"]/a[@class="company"]')
+            if not cm:
+                continue
+            name = cm.xpath('./text()').extract_first('').strip()
+            href = cm.xpath('./@href').extract_first('').strip()
+            value = cm.xpath('./@value').extract_first('').strip()
+
+            cq =ic.xpath('./li[@class="col11"]/a[@class="customerqq"]/@href').\
+                    extract_first()
+            qq = ''
+            if cq:
+                qqs = [q.split('=')[1] for q in cq.split('&') if 'uin' in q]
+                if qqs:
+                    qq = qqs[0]
+
+            ci = CompanyItem()
+            ci['name'] = name
+            ci['href'] = href
+            ci['customerqq'] = qq
+            ci['phone'] = ''
+            ci['mphone'] = ''
+            ci['address'] = ''
+            value = value.replace('{', '').replace('}', '')
+            for kv in value.split("',"):
+                kv = kv.replace("'", '')
+                tmp = kv.split(':')
+                if tmp[0] == 'phone':
+                    ci['phone'] = tmp[1]
+                    continue
+                if tmp[0] == 'mphone':
+                    ci['mphone'] = tmp[1]
+                    continue
+                if tmp[0] == 'address':
+                    ci['address'] = tmp[1]
+            logging.debug(ci)
+            cis.append(ci)
+
+        # 获取下一页href
+        tmp = response.xpath('//a[@title="下一页"]/@href').extract_first()
+        next_page_url = None
+        if tmp:
+            next_page_url = 'http://s.hqew.com' + tmp
+        return cis, next_page_url
+
+    def _parse_lunbo(self, response):
+        # 获取轮播
+        fshop = response.xpath('//div[@id="fshop"]')
+        lbs = fshop.xpath('//ul[@class="g-cf"]')
+        cis = []
+        for lb in lbs:
+            cm = lb.xpath('./li[@class="col3"]/a[@class="company"]')
+            if not cm:
+                continue
+            info = cm.xpath('./@info').extract_first('').strip()
+            name = cm.xpath('./text()').extract_first('').strip()
+            href = cm.xpath('./@href').extract_first('').strip()
+
+            ci = CompanyItem()
+            ci['name'] = name
+            ci['href'] = href
+            ci['phone'] = ''
+            info = info.replace('{', '').replace('}', '')
+            for kv in info.split("',"):
+                kv = kv.replace("'", '')
+                tmp = kv.split(':')
+                if tmp[0] == 'phone':
+                    ci['phone'] = tmp[1]
+                    break
+            ci['address'] = ''
+            ci['mphone'] = ''
+            ci['customerqq'] = ''
+            logging.debug(ci)
+            cis.append(ci)
+        return cis
+
+    def parse_next_page(self, html):
+        response = Selector(text=html)
+        return self._parse_ic(response)
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+    part_number = input('请输入商品型号:')
+    if not part_number:
+        input('x 商品型号不能为空')
+    print('! 正在搜索该型号')
+    xls = XLS()
+    cs = CompanySpider()
+    html = cs.search(part_number)
+    ics, next_page_url = cs.parse_search(html)
+    i, j = 0, 0
+    for ic in ics:
+        xls.write(i, j, ic['name'])
+        j += 1
+        xls.write(i, j, ic['href'])
+        j += 1
+        xls.write(i, j, ic['address'])
+        j += 1
+        xls.write(i, j, ic['phone'])
+        j += 1
+        xls.write(i, j, ic['mphone'])
+        j += 1
+        xls.write(i, j, ic['customerqq'])
+        i += 1
+        j = 0
+    while next_page_url:
+        html = cs.next_page(next_page_url)
+        ics, next_page_url = cs.parse_next_page(html)
+        for ic in ics:
+            xls.write(i, j, ic['name'])
+            j += 1
+            xls.write(i, j, ic['href'])
+            j += 1
+            xls.write(i, j, ic['address'])
+            j += 1
+            xls.write(i, j, ic['phone'])
+            j += 1
+            xls.write(i, j, ic['mphone'])
+            j += 1
+            xls.write(i, j, ic['customerqq'])
+            i += 1
+            j = 0
+    xls.save(part_number)
+    input('! 该型号搜索完毕，搜素结果已在%s中, 请按任意键退出\n' % part_number)
+}}}
+* requirements
+1. python35
+2. pip install scrapy xlwt -i https://pypi.douban.com/simple/
+
+* package standalone executable file. 
+pyinstaller --paths C:Python35 -F hq.py
+
+--paths load the python35.DLL
+-F package standalone executable file.

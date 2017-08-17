@@ -1,0 +1,50 @@
+= pymongo =
+A python open-source library to operate mongodb
+
+== Get connection ==
+* 无身份验证
+{{{
+import pymongo
+host = 'localhost'
+db = 'digikey'
+mc = pymongo.MongoClient(host)
+db_conn = eval('mc.%s' % db)
+}}}
+
+* 有身份验证
+{{{
+import pymongo
+from urllib.parse import quote_plus
+username = 'admin'
+password = '123456'
+host = 'localhost'
+db = 'digikey'
+
+uri = "mongodb://%s:%s@%s" % (quote_plus(username),
+    quote_plus(password), quote_plus(host))
+mc = pymongo.MongoClient(uri)    
+db_conn = eval('mc.%s' % db)
+}}}
+
+== Insert ==
+* 插入一个数据
+{{{
+data = {
+    'a': 65
+}
+db_conn.insert_one(str(data)).inserted_id
+}}}
+
+== query ==
+* 根据a=65获取数据
+{{{
+a = 65
+db_conn.find_one({'a': a})
+}}}
+
+== updae ==
+* 根据a=65修改a=66
+{{{
+a = 65
+db_conn.replace_one({{'a': 65}}, {'a': 66})
+}}}

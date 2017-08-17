@@ -1,0 +1,17 @@
+= xlwt =
+一个用于写excel的开源python库
+
+== 一个简单的例子 ==
+{{{
+import xlwt
+excel = xlwt.Workbook()
+sheet = excel.add_sheet('default')
+
+# 在第一行，第一列写入值0
+x, y, v = 0, 0, 0
+# x代表第一行，代表列，v代表值
+sheet.write(x, y, v)
+
+# 保存
+excel.save('example.xls')
+}}}

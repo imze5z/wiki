@@ -1,0 +1,71 @@
+= supervisor =
+一个unix系统下的使用python语言开发的进程管理工具
+
+== requirements ==
+* ubuntu
+* python2
+ 
+== install == 
+apt install supervisor
+
+== commands ==
+1. supervisorctl 
+2. supervisorctl reload -- 修改配置文件后使supervisor重启
+3. supervisorctl start all -- 启动所有的进程
+4. supervisorctl stop all -- 停止所有的进程
+5. supervisorctl restart all -- 重启所有的进程
+6. supervisorctl status -- 查看所有进程的状态
+3,4,5后面均可加进程名称(i.e supervisorctl status下的所有的进程名称)
+
+== examples ==
+* 主配置文件地址
+/etc/supervisor/supervisord.conf
+{{{
+;supervisor config file
+
+[unix_http_server]
+file=/var/run/supervisor.sock   ; (the path to the socket file)
+chmod=0700                       ; sockef file mode (default 0700)
+
+[supervisord]
+logfile=/var/log/supervisor/supervisord.log ; (main log file;default $CWD/supervisord.log)
+pidfile=/var/run/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+childlogdir=/var/log/supervisor            ; ('AUTO' child log dir, default $TEMP)
+
+; the below section must remain in the config file for RPC
+; (supervisorctl/web interface) to work, additional interfaces may be
+; added by defining them in separate rpcinterface: sections
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
+
+; The [include] section can just contain the "files" setting.  This
+; setting can list multiple files (separated by whitespace or
+; newlines).  It can also contain wildcards.  The filenames are
+; interpreted as relative to this file.  Included files *cannot*
+; include files themselves.
+
+[include]
+files = /home/sc/桌面/syscuts/supervisord.d/*.ini /data/projects/bigdata/supervisord.d/client/*.ini /data/projects/bigdata/supervisord.d/server/*.ini
+}}}
+最后一行是我们需要修改的地方，用空格分割很多个配置文件夹
+
+* 将具体的配置文件放到这个文件夹中，用".ini"结尾
+/home/sc/桌面/syscuts/supervisord.d/exmaple.ini
+{{{
+[program:c_arrow_recv_goods]                                                                                        
+directory=/data/projects/bigdata/client/recv_cron                                  
+command=python3.6 ./arrow/recv_goods.py  True                                      
+numprocs=1 # 制定启动几个进程，如果为2,就会启动两个进程
+process_name=%(program_name)s_%(process_num)02d                                    
+autostart=true                                                                     
+autorestart=true                                                                   
+startretries=3                                                                     
+user=root                                                                          
+redirect_stderr=true                                                               
+stdout_logfile=/data/log/bigdata/client/arrow/%(program_name)s_%(process_num)02d.log
+stdout_logfile_maxbytes=100MB # 日志文件的大小为100MB
+logfile_backups=5  # 制定日志文件的最多被备份5个
+}}}

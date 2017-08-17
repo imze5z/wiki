@@ -1,0 +1,8 @@
+= sys =
+
+== 函数 ==
+* [[getdlopenflags]](...)
+    getdlopenflags() -> int
+    
+    Return the current value of the flags that are used for [[dlopen ]]
+    calls.  The flag constants are defined in the os module.
