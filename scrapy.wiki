@@ -1,4 +1,6 @@
-= scrapy =
+= scrapy = 
+[ ] [[scrapyd]] -- a open-source software to deploy scrapy program
+
 
 == use pyinstaller package scrapy program ==
 

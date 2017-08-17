@@ -1,0 +1,27 @@
+= scrapyd-client =
+https://github.com/scrapy/scrapyd-client
+
+= install =
+pip install scrapyd-client
+
+== deploy a scrapy project ==
+meitulu/scrapy.cfg
+{{{
+# Automatically created by: scrapy startproject
+#
+# For more information about the [deploy] section see:
+# https://scrapyd.readthedocs.org/en/latest/deploy.html
+
+[settings]
+default = meitulu.settings
+
+[deploy]
+url = http://localhost:6800/
+project = meitulu
+}}}
+cd meitulu/
+
+scrapyd-deploy -p dmoz
+
+= run the spider =
+curl http://localhost:6800/schedule.json -d project=meitulu -d spider=i_category

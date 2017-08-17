@@ -1,0 +1,8 @@
+= subprocess =
+
+= class =
+* Popen
+{{{ 
+with subprocess.Popen(['ping', 'baidu.com'], stdout=subprocess.PIPE) as proc:
+    print(proc.stdout.read())
+}}}

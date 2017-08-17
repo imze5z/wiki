@@ -1,0 +1,9 @@
+= scrapyd =
+[ ] [[scrapyd-client ]]
+http://blog.csdn.net/xiaoquantouer/article/details/53164306
+
+== install on ubuntu ==
+pip install scrapyd
+
+== run the server ==
+scrapyd

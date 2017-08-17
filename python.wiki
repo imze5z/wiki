@@ -21,10 +21,11 @@ pip freeze
 }}}
 
 == internal module ==
-[[sys]] | [[threading]] |
+[[sys]] | [[threading]] | [[time ]]| [[subprocess]] | [[os]] |
 
 == third module ==
-[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]] | [[scrapy]] |
+[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]] |
+[[scrapy]] | [[tornado]] |
 
 == open-source software by python ==
 [[pyinstaller]] | [[supervisor]] | [[sphinx]] | [[virtualenv]]
