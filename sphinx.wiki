@@ -1,0 +1,9 @@
+= sphinx =
+a .rst document software by python
+
+== install ==
+{{{
+sudo pip install sphinx
+}}}
+
+== make html ==

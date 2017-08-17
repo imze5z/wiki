@@ -1,0 +1,11 @@
+= tar =
+
+== tgz ==
+{{{
+tar xvf ex.tgz
+}}}
+
+== tar.gz ==
+{{{
+tar zxf ex.tar.gz
+}}}

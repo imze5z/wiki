@@ -1,5 +1,10 @@
 = yaml =
 
+== install ==
+{{{
+pip install pyyaml
+}}}
+
 == yaml基础语法 ==
 * 实例yaml配置文件
 {{{

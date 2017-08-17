@@ -1,10 +1,30 @@
 = python =
 
+== install ==
+{{{
+wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
+}}}
+
+== pip install -i ==
+{{{
+sudo pip install pymongo -i https://pypi.douban.com/simple/
+}}}
+
+== pip uninstall ==
+{{{
+sudo pip uninstall pymongo
+}}}
+
+== pip list your installed libraries ==
+{{{
+pip freeze 
+}}}
+
 == internal module ==
 [[sys]] | [[threading]] |
 
 == third module ==
-[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]]
+[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]] | [[scrapy]] |
 
-== 第三方优秀的软件 ==
-[[pyinstaller]] | [[supervisor]]
+== open-source software by python ==
+[[pyinstaller]] | [[supervisor]] | [[sphinx]] | [[virtualenv]]

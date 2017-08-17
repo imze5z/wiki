@@ -1,2 +1,2 @@
 = Wiki =
-[[linux]] | [[python]] | [[tensorflow]] | [[nltk]]
+[[linux]] | [[python]]

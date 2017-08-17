@@ -1,0 +1,23 @@
+= virtualenv =
+a virutal environment that spearate operation system's python.
+
+== install =
+{{{
+sudo pip install virtualenv
+}}}
+
+== create a virtual environment for python ==
+{{{
+virtualenv py
+}}}
+
+== activate the virtual environment ==
+{{{
+source ./py/bin/activate
+}}}
+
+== pip install for the virtual environment ==
+{{{
+source ./py/in/activate
+pip install xxx
+}}}

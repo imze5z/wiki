@@ -161,7 +161,8 @@ header 也是允许的，但不建议这样做。
 >>> r = requests.post(url, data=json.dumps(payload))
 
 
-此处除了可以自行对 dict 进行编码，你还可以使用 json 参数直接传递，然后它就会被自动编码。这是 2.4.2 版的新加功能：
+此处除了可以自行对 dict 进行编码，你还可以使用 json 参数直接传递，然后它就会被
+自动编码。这是 2.4.2 版的新加功能：
 
 >>> url = 'https://api.github.com/some/endpoint'
 >>> payload = {'some': 'data'}
@@ -210,12 +211,16 @@ Requests 使得上传多部分编码文件变得很简单：
   },
   ...
 }
-如果你发送一个非常大的文件作为 multipart/form-data 请求，你可能希望将请求做成数据流。默认下 requests 不支持, 但有个第三方包 requests-toolbelt 是支持的。你可以阅读 toolbelt 文档 来了解使用方法。
+如果你发送一个非常大的文件作为 multipart/form-data 请求，你可能希望将请求做成
+数据流。默认下 requests 不支持, 但有个第三方包 requests-toolbelt 是支持的。你
+可以阅读 toolbelt 文档 来了解使用方法。
 
 在一个请求中发送多文件参考 高级用法 一节。
 
 警告
-我们强烈建议你用二进制模式(binary mode)打开文件。这是因为 Requests 可能会试图为你提供 Content-Length header，在它这样做的时候，这个值会被设为文件的字节数（bytes）。如果用文本模式(text mode)打开文件，就可能会发生错误。
+我们强烈建议你用二进制模式(binary mode)打开文件。这是因为 Requests 可能会试图
+为你提供 Content-Length header，在它这样做的时候，这个值会被设为文件的字节数
+（bytes）。如果用文本模式(text mode)打开文件，就可能会发生错误。
 
 == 响应状态码 ==
 我们可以检测响应状态码：
@@ -227,7 +232,8 @@ Requests 使得上传多部分编码文件变得很简单：
 
 >>> r.status_code == requests.codes.ok
 True
-如果发送了一个错误请求(一个 4XX 客户端错误，或者 5XX 服务器错误响应)，我们可以通过 Response.raise_for_status() 来抛出异常：
+如果发送了一个错误请求(一个 4XX 客户端错误，或者 5XX 服务器错误响应)，我们可以
+通过 Response.raise_for_status() 来抛出异常：
 
 >>> bad_r = requests.get('http://httpbin.org/status/404')
 >>> bad_r.status_code
@@ -238,7 +244,8 @@ Traceback (most recent call last):
   File "requests/models.py", line 832, in raise_for_status
     raise http_error
 requests.exceptions.HTTPError: 404 Client Error
-但是，由于我们的例子中 r 的 status_code 是 200 ，当我们调用 raise_for_status() 时，得到的是：
+但是，由于我们的例子中 r 的 status_code 是 200 ，当我们调用 raise_for_status()
+时，得到的是：
 
 >>> r.raise_for_status()
 None
@@ -257,7 +264,8 @@ None
     'etag': '"e1ca502697e5c9317743dc078f67693f"',
     'content-type': 'application/json'
 }
-但是这个字典比较特殊：它是仅为 HTTP 头部而生的。根据 RFC 2616， HTTP 头部是大小写不敏感的。
+但是这个字典比较特殊：它是仅为 HTTP 头部而生的。根据 RFC 2616， HTTP 头部是大
+小写不敏感的。
 
 因此，我们可以使用任意大写形式来访问这些响应头字段：
 
@@ -266,11 +274,14 @@ None
 
 >>> r.headers.get('content-type')
 'application/json'
-它还有一个特殊点，那就是服务器可以多次接受同一 header，每次都使用不同的值。但 Requests 会将它们合并，这样它们就可以用一个映射来表示出来，参见 RFC 7230:
+它还有一个特殊点，那就是服务器可以多次接受同一 header，每次都使用不同的值。但 
+Requests 会将它们合并，这样它们就可以用一个映射来表示出来，参见 RFC 7230:
 
 A recipient MAY combine multiple header fields with the same field name into one "field-name: field-value" pair, without changing the semantics of the message, by appending each subsequent field value to the combined field value in order, separated by a comma.
 
-接收者可以合并多个相同名称的 header 栏位，把它们合为一个 "field-name: field-value" 配对，将每个后续的栏位值依次追加到合并的栏位值中，用逗号隔开即可，这样做不会改变信息的语义。
+接收者可以合并多个相同名称的 header 栏位，把它们合为一个 
+"field-name: field-value" 配对，将每个后续的栏位值依次追加到合并的栏位值中，用
+逗号隔开即可，这样做不会改变信息的语义。
 
 
 == cookies ==
@@ -289,7 +300,8 @@ A recipient MAY combine multiple header fields with the same field name into one
 >>> r = requests.get(url, cookies=cookies)
 >>> r.text
 '{"cookies": {"cookies_are": "working"}}'
-Cookie 的返回对象为 RequestsCookieJar，它的行为和字典类似，但界面更为完整，适合跨域名跨路径使用。你还可以把 Cookie Jar 传到 Requests 中：
+Cookie 的返回对象为 RequestsCookieJar，它的行为和字典类似，但界面更为完整，适
+合跨域名跨路径使用。你还可以把 Cookie Jar 传到 Requests 中：
 
 >>> jar = requests.cookies.RequestsCookieJar()
 >>> jar.set('tasty_cookie', 'yum', domain='httpbin.org', path='/cookies')
@@ -305,7 +317,8 @@ Cookie 的返回对象为 RequestsCookieJar，它的行为和字典类似，但�
 
 可以使用响应对象的 history 方法来追踪重定向。
 
-Response.history 是一个 Response 对象的列表，为了完成请求而创建了这些对象。这个对象列表按照从最老到最近的请求进行排序。
+Response.history 是一个 Response 对象的列表，为了完成请求而创建了这些对象。这
+个对象列表按照从最老到最近的请求进行排序。
 
 例如，Github 将所有的 HTTP 请求重定向到 HTTPS：
 
@@ -319,7 +332,8 @@ Response.history 是一个 Response 对象的列表，为了完成请求而创�
 
 >>> r.history
 [<Response [301]>]
-如果你使用的是GET、OPTIONS、POST、PUT、PATCH 或者 DELETE，那么你可以通过 allow_redirects 参数禁用重定向处理：
+如果你使用的是GET、OPTIONS、POST、PUT、PATCH 或者 DELETE，那么你可以通过 
+allow_redirects 参数禁用重定向处理：
 
 >>> r = requests.get('http://github.com', allow_redirects=False)
 >>> r.status_code
@@ -335,19 +349,25 @@ Response.history 是一个 Response 对象的列表，为了完成请求而创�
 [<Response [301]>]
 
 == 超时 ==
-你可以告诉 requests 在经过以 timeout 参数设定的秒数时间之后停止等待响应。基本上所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应：
+你可以告诉 requests 在经过以 timeout 参数设定的秒数时间之后停止等待响应。基本上
+所有的生产代码都应该使用这一参数。如果不使用，你的程序可能会永远失去响应：
 
 >>> requests.get('http://github.com', timeout=0.001)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
 注意
-timeout 仅对连接过程有效，与响应体的下载无关。 timeout 并不是整个下载响应的时间限制，而是如果服务器在 timeout 秒内没有应答，将会引发一个异常（更精确地说，是在 timeout 秒内没有从基础套接字上接收到任何字节的数据时）If no timeout is specified explicitly, requests do not time out.
+timeout 仅对连接过程有效，与响应体的下载无关。 timeout 并不是整个下载响应的时
+间限制，而是如果服务器在 timeout 秒内没有应答，将会引发一个异常（更精确地说，
+是在 timeout 秒内没有从基础套接字上接收到任何字节的数据时）If no timeout is 
+specified explicitly, requests do not time out.
 
 == 错误和异常 ==
-遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 ConnectionError 异常。
+遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个
+ConnectionError 异常。
 
-如果 HTTP 请求返回了不成功的状态码， Response.raise_for_status() 会抛出一个 HTTPError 异常。
+如果 HTTP 请求返回了不成功的状态码， Response.raise_for_status() 会抛出一个 
+HTTPError 异常。
 
 若请求超时，则抛出一个 Timeout 异常。
 

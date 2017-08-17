@@ -1,6 +1,6 @@
 = sys =
 
-== 函数 ==
+== function ==
 * [[getdlopenflags]](...)
     getdlopenflags() -> int
     

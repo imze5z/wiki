@@ -1,0 +1,38 @@
+= scrapy =
+
+== use pyinstaller package scrapy program ==
+
+== xpath syntax ==
+{{{
+<html>
+<body>
+	<a id="hello a">a
+		<img src="">
+	</a>
+	<a id="hello b">b</a>
+	<a id="hello c">c</a>
+</body>
+</html>
+}}}
+use xpath parse all of "a" tag
+{{{
+from scrapy.selector import Selector
+res = Selector(text=html)
+a = res.xpath('//a[starts-with(@a, "hello ")]')
+}}}
+
+parse img
+{{{
+img = res.xpath('//a[@id="hello a"]/img')
+src = img.xpath('./@src').extract_first()
+}}}
+
+parse a text
+{{{
+text = res.xpath('//a[@id="hello a"]/text()').extract_first()
+}}}
+
+parse a id="hello a" 's node  html
+{{{
+a_node = res.xpath('//a[@id="hello a"]/node()').extract()
+}}}
