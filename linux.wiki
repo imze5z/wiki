@@ -2,3 +2,8 @@
 
 == commands ==
 [[tar]] | [[neovim]] |
+
+== softwares == 
+[[chrome]] |
+== servsers ==
+[[rabbitmq]] | [[mongodb]] | [[mysql]] |

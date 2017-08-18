@@ -1,0 +1,50 @@
+= mongodb =
+
+== install on ubuntu ==
+{{{
+sudo apt install mongodb
+}}}
+
+== enable remote access ==
+sudo vi /etc/mongodb.conf
+/bind
+{{{
+# bind_ip = 127.0.0.1
+}}}
+
+== enable auth access ==
+* the default auth is false
+sudo vi /etc/mongodb.conf
+/auth
+{{{
+auth = true
+}}}
+
+== add user administrator for admin database ==
+- TODO
+[ ]
+{{{
+mongo
+use admin
+db.createUser({user:"root",pwd:"123456",roles:[{role:"root",db:"admin"}]})
+service mongodb restart
+}}}
+
+== add user readWrite for test database ==
+{{{
+mongo
+use ichunt
+db.createUser({user:"ichunt", pwd:"huntmon66499", roles:[{role:"readWrite", db:"ichunt"}]})
+}}}
+
+== delete user test for test db ==
+vi /etc/mongodb.conf
+#auth
+service mongodb restart
+{{{
+use test
+db.system.users.remove({user:"test"})
+}}}
+vi /etc/mongodb.conf
+auth
+service mongodb restart

@@ -1,0 +1,24 @@
+= mysql =
+
+== install on ubuntu ==
+{{{
+sudo apt install mysql-server
+}}}
+
+== enable remote access ==
+vi /etc/mysql/mysql.conf.d/mysqld.cnf
+{{{
+#bind-address 127.0.0.1
+}}}
+
+== add user for test database and enable remote access ==
+{{{
+mysql -u root -p123456
+use mysql;
+create user coco identified by "coco520";
+
+create database coco;
+grant all on coco.* to 'coco'@'%';
+
+flush privileges;
+}}}

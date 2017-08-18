@@ -1,2 +1,7 @@
 = Wiki =
+
+== Technologies ==
 [[linux]] | [[python]]
+
+== Work ==
+[ ] [[biscoind]] -- https://www.biscoind.com/

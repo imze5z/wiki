@@ -1,0 +1,71 @@
+= [[biscoind]] =
+
+* has price
+https://zh.biscoind.com/Southco/6200000007373/Arrowhead+Pawl+Indicator+Design+Cam+Latches
+
+== category ==
+=== fllow process===
+{{{
+client -> get categories -> send categories
+        |
+    rabbitmq
+        |
+server -> recv categories -> mysql
+}}}
+
+=== pseudo-code ===
+https://zh.biscoind.com/store?o=BiscoProducts
+{{{
+cas = []
+cj = res.xpath('//div[@id="contentcontainerJob"]')
+for pct in cj.xpath('./div'):
+    h3s = pct.xpath('./h3')
+    uls = pct.xpath('./ul')
+    
+    i = 0
+    while i < len(h3s):
+        cat_name = h3s[i].xpath('./text()').extract_first()
+        if not cat_name:
+            continue
+        lc_0 = {
+            'cat_name': cat_name,
+            'url': '',
+            'level': 0,
+            'parent_id': 0,
+            'sub_categories': []
+        }
+        for li in uls[i].xpath('./li'):
+            a = li.xpath('./a')
+            cat_name = a.xpath('./text()')
+            url = a.xpath('./@href')
+            lc_1 = {
+                'cat_name': cat_name,
+                'url': url,
+                'level': 1,
+                'parent_id': lc_0['cat_name'],
+                'sub_categories': []
+            }
+            lc_0['sub_categories'].append(lc_1)
+        i += 1 
+        cas.append(lc_0)    
+}}}
+
+https://www.biscoind.com/RAF
+{{{
+tegulars = res.xpath('//div[@class="tegular"]')
+for tegular in tegulars:
+    a = tegular.xpath('./a')
+    href = a.xpath('./@href').extract_first()
+    url = ''
+    if href:
+        url = 'https://www.biscoind.com' + href
+    cat_name = a.xpath('./div[@class="tiletext"]/text()').extract_first()
+    lc_n_1 = {
+        'cat_name': cat_name,
+        'url': url,
+        'level': lc_n['level'] + 1,
+        'parent_id': lc_n['cat_name'],
+        'sub_categories': []
+    }
+    lc_n['sub_categories'].append(lc_2)
+}}}

@@ -1,0 +1,21 @@
+= rabbitmq =
+
+== install on ubuntu ==
+{{{
+sudo apt install rabbitmq-server -y
+}}}
+
+== enable web management configuration ==
+{{{
+rabbitmq-plugins enable rabbitmq_management
+}}}
+
+== add user can be accessed from remote ==
+{{{
+rabbitmqctl list_users 
+rabbitmqctl add_user admin admin
+rabbitmqctl set_user_tags admin administrator
+rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
+rabbitmqctl delete_user guest
+rabbitmqctl list_users
+}}}
