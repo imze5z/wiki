@@ -3,7 +3,7 @@
 * has price
 https://zh.biscoind.com/Southco/6200000007373/Arrowhead+Pawl+Indicator+Design+Cam+Latches
 
-== category ==
+[o] category
 === fllow process===
 {{{
 client -> get categories -> send categories
@@ -50,8 +50,7 @@ for pct in cj.xpath('./div'):
         cas.append(lc_0)    
 }}}
 
-https://www.biscoind.com/RAF
-{{{
+https://www.biscoind.com/RAF {{{
 tegulars = res.xpath('//div[@class="tegular"]')
 for tegular in tegulars:
     a = tegular.xpath('./a')
