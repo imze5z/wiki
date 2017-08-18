@@ -1,0 +1,26 @@
+= vimwiki =
+
+== can vimwiki support image display ==
+{{{
+From the vimwiki-help:
+
+Transclude from a local URL: >
+  {{file:../../images/vimwiki_logo.png}}
+or from a universal URL: >
+  {{http://vimwiki.googlecode.com/hg/images/vimwiki_logo.png}}
+
+Transclude image with alternate text: >
+  {{http://vimwiki.googlecode.com/hg/images/vimwiki_logo.png|Vimwiki}}
+in HTML: >
+  <img src="http://vimwiki.googlecode.com/hg/images/vimwiki_logo.png"
+  alt="Vimwiki"/>
+
+Transclude image with alternate text and some style: >
+  {{http://.../vimwiki_logo.png|cool stuff|style="width:150px;height:120px;"}}
+in HTML: >
+  <img src="http://vimwiki.googlecode.com/hg/images/vimwiki_logo.png"
+  alt="cool stuff" style="width:150px; height:120px"/>
+
+Vimwiki won't display the images in vim but you will be able to see the images 
+in the rendered HTML.
+}}}
