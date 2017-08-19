@@ -1,0 +1,6 @@
+= jre =
+
+= install on ubuntu =
+{{{
+sudo apt install default-jre
+}}}

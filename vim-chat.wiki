@@ -1,0 +1,18 @@
+= vim-chat =
+ERROR 
+https://github.com/vim-chat/vim-chat
+
+== requirements ==
+1. [[Mojo-Webqq]]
+2. [[Mojo-Weixin]]
+3. [[jre]]
+4. [[irssi]]
+ 
+== commands ==
+
+=== call chat#qq#start() ===
+    首先启动 QQ 服务器 call chat#qq#start(), 然后会自动弹出一个二维码，手机扫
+描下就可以登录了。neovim 默认使用 Alt + x 打开/关闭聊天窗口。
+    
+=== call chat#chatting#OpenMsgWin() ===
+    chatting with me by call chat#chatting#OpenMsgWin()

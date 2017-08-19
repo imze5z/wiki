@@ -15,13 +15,18 @@ sudo pip install pymongo -i https://pypi.douban.com/simple/
 sudo pip uninstall pymongo
 }}}
 
+== pip install from github ==
+{{{
+pip install git+https://github.com/imze5z/python_study
+}}}
+
 == pip list your installed libraries ==
 {{{
 pip freeze 
 }}}
 
 == internal module ==
-[[sys]] | [[threading]] | [[time ]]| [[subprocess]] | [[os]] |
+[[sys]] | [[threading]] | [[time ]]| [[subprocess]] | [[os]] | [[sqlite3]]
 
 == third module ==
 [[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]] |

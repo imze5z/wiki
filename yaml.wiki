@@ -27,11 +27,13 @@ stream.close()
 print(dbcfg)
 }}}
 * 输出
+{{{
 {'mongo_proxy_ip': {
     'host': 'localhost',
     'port': 27017,
     'database': 'test',
     'user': 'admin',
     'password': '123456'}}
+}}}    
     
 如上所示，输出的是一个字典    
