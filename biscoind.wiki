@@ -3,7 +3,23 @@
 * has price
 https://zh.biscoind.com/Southco/6200000007373/Arrowhead+Pawl+Indicator+Design+Cam+Latches
 
-[o] category
+== Todo ==
+- [o] category
+    - [X] client get all categories and send it to rabbitmq. 
+    - [ ] server get all categories from rabbitmq and store it to mysql.
+- [.] pagnation
+    - [ ] server send the category that islast is 1 to rabbitmq. 
+    - [ ] client recv the category from rabbitmq.
+    - [ ] client get all goods list and send it to rabbitmq.
+    - [ ] server recv all goods from rabbitmq and generate goods_id.
+- [.] goods detail
+    - [ ] server send goods to rabbitmq.
+    - [ ] client recv goods from rabbitmq.
+    - [ ] client get goods detail and sent it to rabbitmq.
+    - [ ] server recv goods detail and store it to mysql, mongodb.
+    - [ ] server store goods price to mysql.
+
+== category ==
 === fllow process===
 {{{
 client -> get categories -> send categories

@@ -29,8 +29,8 @@ pip freeze
 [[sys]] | [[threading]] | [[time ]]| [[subprocess]] | [[os]] | [[sqlite3]]
 
 == third module ==
-[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]] |
-[[scrapy]] | [[tornado]] |
+[[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]]
+[[scrapy]] | [[tornado]] | [[nltk]]
 
 == open-source software by python ==
 [[pyinstaller]] | [[supervisor]] | [[sphinx]] | [[virtualenv]]

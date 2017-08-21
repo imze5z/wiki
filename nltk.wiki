@@ -1,0 +1,12 @@
+= nltk =
+
+== install on ubuntu ==
+{{{
+pip install nltk
+}}}
+
+== download data ==
+{{{
+import nltk
+nltk.download()
+}}}

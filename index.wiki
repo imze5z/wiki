@@ -4,4 +4,6 @@
 [[linux]] | [[python]]
 
 == Work ==
-[ ] [[biscoind]] -- https://www.biscoind.com/
+- [o] [[biscoind]] -- https://www.biscoind.com/
+- [o] [[maxim]] -- https://cn.maximintegrated.com
+- [o] [[onlinecomponents]] -- https://cn.onlinecomponents.com/productsearch/

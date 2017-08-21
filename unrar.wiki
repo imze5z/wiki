@@ -1,0 +1,11 @@
+= unrar =
+
+== install on ubuntu ==
+{{{
+apt install unrar
+}}}
+
+== usage ==
+{{{
+unrar x exampl.rar
+}}}
