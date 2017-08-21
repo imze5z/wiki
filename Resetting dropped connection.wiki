@@ -1,0 +1,4 @@
+= Resetting dropped connection =
+https://stackoverflow.com/questions/28867840/why-do-i-constantly-see-resetting-dropped-connection-when-uploading-data-to-my
+https://stackoverflow.com/questions/25239650/python-requests-speed-up-using-keep-alive
+https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do?rq=1
