@@ -6,16 +6,16 @@ https://zh.biscoind.com/Southco/6200000007373/Arrowhead+Pawl+Indicator+Design+Ca
 == Todo ==
 - [o] category
     - [X] client get all categories and send it to rabbitmq. 
-    - [ ] server get all categories from rabbitmq and store it to mysql.
+    - [X] server get all categories from rabbitmq and store it to mysql.
 - [.] pagnation
     - [X] server send the category that islast is 1 to rabbitmq. 
     - [X] client recv the category from rabbitmq.
-    - [o] client get all goods list and send it to rabbitmq.
-    - [ ] server recv all goods from rabbitmq and generate goods_id.
+    - [X] client get all goods list and send it to rabbitmq.
+    - [X] server recv all goods from rabbitmq and generate goods_id.
 - [.] goods detail
-    - [ ] server send goods to rabbitmq.
-    - [ ] client recv goods from rabbitmq.
-    - [ ] client get goods detail and sent it to rabbitmq.
+    - [X] server send goods to rabbitmq.
+    - [X] client recv goods from rabbitmq.
+    - [X] client get goods detail and sent it to rabbitmq.
     - [ ] server recv goods detail and store it to mysql, mongodb.
     - [ ] server store goods price to mysql.
 

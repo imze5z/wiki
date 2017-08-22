@@ -1,5 +1,5 @@
 = requests = 
-[[ 高级部分]] |  [[FAQ]]
+[[高级部分]] |  [[FAQ]]
 一个对人类比较友好的http, https请求库。
 
 == requirements ==

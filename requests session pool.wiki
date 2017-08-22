@@ -1,0 +1,8 @@
+= requests session pool =
+{{{
+import requests
+session = requests.session()
+adapter = requests.adapter.HTTPAdapter(
+    pool_connections=100, pool_maxsize=200)
+session.mount("https://", adapter)
+}}}
