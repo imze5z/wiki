@@ -1,6 +1,15 @@
 = neovim =
 similar for vim. maybe instead of vim.
+https://github.com/neovim/neovim/wiki/Installing-Neovim
 
+== install ==
+{{{
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install neovim
+}}}
+
+== config your neovim config from vim8.0 ==
 {{{
 mkdir ~/.config
 ln -s ~/.vim ~/.config/nvim
