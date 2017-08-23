@@ -38,3 +38,8 @@ parse a id="hello a" 's node  html
 {{{
 a_node = res.xpath('//a[@id="hello a"]/node()').extract()
 }}}
+
+parse a text coantains 'Data Sheet'
+{{{
+a_node = res.xpath('//a[contains(., "Data Sheet")]')
+}}}
