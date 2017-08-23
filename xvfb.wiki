@@ -1,0 +1,19 @@
+= xvfb =
+http://www.linuxidc.com/Linux/2014-07/104819.htm
+
+== install on linux ==
+{{{
+# Centos
+yum install Xvfb
+
+# Ubuntu
+apt install xvfb
+}}}
+
+== start xvfb server and set display device 10 ==
+{{{
+sudo Xvfb :10 -ac
+
+vi /etc/profile
+export DISPLAY=:10
+}}}

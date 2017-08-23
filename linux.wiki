@@ -7,4 +7,4 @@
 [[chrome]] |
 
 == servsers ==
-[[rabbitmq]] | [[mongodb]] | [[mysql]] |
+[[rabbitmq]] | [[mongodb]] | [[mysql]] | [[xvfb]] |
