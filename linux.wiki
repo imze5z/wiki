@@ -1,5 +1,7 @@
 = linux =
 
+== base ==
+[[/etc/profile]] | [[environment variable]] |
 == commands ==
 [[tar]] | [[neovim]] | [[unrar]]
 

@@ -1,0 +1,29 @@
+= environment variable =
+
+== path ==
+- 1
+* immediate effect
+* Temporary changes can only be valid in the current terminal window. 
+When the current window is closed, the original path configuration 
+is restored.
+* Only for current users
+{{{
+>>> export PATH=/data/projects/bigdata/driver/:$PATH
+}}}
+
+- 2
+* Permanent entry into force  
+* Only for current users
+{{{
+>>> vim ~/.bashrc
+export PATH=/data/projects/bigdata/driver:$PATH
+>>> source ~/.bashrc
+}}}
+
+- 3 
+* Right for all users.
+{{{
+>>> vim /etc/profile
+export PATH=/data/projects/bigdata/driver:$PATH
+>>> reboot
+}}}
