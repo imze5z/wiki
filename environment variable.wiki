@@ -27,3 +27,11 @@ export PATH=/data/projects/bigdata/driver:$PATH
 export PATH=/data/projects/bigdata/driver:$PATH
 >>> reboot
 }}}
+
+- 4
+* Right for all users. 
+{{{
+>>> vim /etc/environment
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"中加入“:/usr/local/mongodb/bin
+>>> reboot
+}}}

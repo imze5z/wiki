@@ -30,7 +30,7 @@ pip freeze
 
 == third module ==
 [[requests]] | [[pymysql]] | [[pymongo]] | [[pika]] | [[xlwt]] | [[yaml]]
-[[scrapy]] | [[tornado]] | [[nltk]]
+[[scrapy]] | [[tornado]] | [[nltk]] | [[PyVirtualDisplay]] |
 
 == open-source software by python ==
 [[pyinstaller]] | [[supervisor]] | [[sphinx]] | [[virtualenv]]

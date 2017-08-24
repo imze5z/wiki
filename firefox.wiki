@@ -1,0 +1,15 @@
+= firefox =
+
+== query firefox version ==
+{{{
+firefox --version
+}}}
+
+
+== install webdriver and firefox ==
+https://github.com/SeleniumHQ/selenium/blob/master/py/docs/source/index.rst
+{{{
+>>> wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
+>>> yum install firefox
+>>>
+}}}

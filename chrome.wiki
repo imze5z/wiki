@@ -7,3 +7,17 @@ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key a
 sudo apt update
 sudo apt install google-chrome-stable
 }}}
+
+== install on centos ==
+{{{
+cd /etc/yum.repos.d/
+vi google.repo
+[gogle]
+name=Google-x86_64
+baseurl=http://dl.google.com/linux/rpm/stable/x86_64
+enabled=1
+gpgcheck=0
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+yum install google-chrome-stable
+}}}
