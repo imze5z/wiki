@@ -7,3 +7,4 @@
 - [o] [[biscoind]] -- https://www.biscoind.com/
 - [o] [[maxim]] -- https://cn.maximintegrated.com
 - [o] [[onlinecomponents]] -- https://cn.onlinecomponents.com/productsearch/
+- [o] [[aipco]] -- http://store.aipco.com/part/list.php?pn=A

@@ -6,7 +6,7 @@
 [[tar]] | [[neovim]] | [[unrar]]
 
 == softwares == 
-[[chrome]] | [[firefox]] |
+[[chrome]] | [[firefox]] | [[Robo]]
 
 == servsers ==
 [[rabbitmq]] | [[mongodb]] | [[mysql]] | [[xvfb]] |

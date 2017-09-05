@@ -2,12 +2,12 @@
 
 == install on ubuntu ==
 {{{
-sudo apt install mysql-server
+sudo apt install mysql-server -y
 }}}
 
 == enable remote access ==
-vi /etc/mysql/mysql.conf.d/mysqld.cnf
 {{{
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 #bind-address 127.0.0.1
 }}}
 
@@ -15,10 +15,11 @@ vi /etc/mysql/mysql.conf.d/mysqld.cnf
 {{{
 mysql -u root -p123456
 use mysql;
-create user coco identified by "coco520";
+create user bigdata identified by "bdYm2yy2mmyzlmlly";
 
-create database coco;
-grant all on coco.* to 'coco'@'%';
+create database company;
+grant all on company.* to 'bigdata'@'%';
 
 flush privileges;
+service mysql restart
 }}}

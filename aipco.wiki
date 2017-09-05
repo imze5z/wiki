@@ -1,0 +1,21 @@
+== xpath ==
+{{{
+for tr in res.xpath('//table[@class="productList"]'):
+    tds = tr.xpath('./td')
+    goods_name = tds[1].xpath('./text()').extract_first()
+    provider_name = tds[2].xpath('./text()').extract_first()
+    
+    tiered = []
+    MOQ = 0
+    try:
+        gss = tr.xpath('./td[@style="text-align:right;width:50px"]/text()').extract()
+        jgs = tr.xpath('./td[@style="text-align:right"]/text()').extract()
+        i = 0
+        while i < len(gss):
+            tiered.append([int(gss[i]), float(jgs[i].split(' ')[1])])
+            i += 1
+    except:   
+        pass
+    kc = td[4].xpath('./td/text()').extract_first()    
+    stock = [MOQ, int(kc or 0)]
+}}}

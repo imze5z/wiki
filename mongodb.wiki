@@ -1,8 +1,7 @@
-= mongodb =
-
+= mongodb = 
 == install on ubuntu ==
 {{{
-sudo apt install mongodb
+sudo apt install mongodb -y
 }}}
 
 == enable remote access ==
